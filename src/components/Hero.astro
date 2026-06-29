@@ -1,12 +1,6 @@
 ---
 import MagneticButton from './MagneticButton.astro';
 import Laptop3D from './Laptop3D.jsx';
-
-const projects = [
-  { name: 'PilotCompassTest.com', category: 'EdTech / SaaS', url: 'https://pilotcompasstest.com', color: '#0070F3' },
-  { name: 'Arthneeti', category: 'Fintech', url: 'https://arthneeti.com', color: '#7928CA' },
-  { name: 'Nepali Imposter Game', category: 'Gaming', url: '#', color: '#10B981' }
-];
 ---
 
 <section class="relative min-h-screen flex items-center overflow-hidden">
@@ -45,60 +39,9 @@ const projects = [
         </div>
       </div>
 
-      <div class="relative" data-animate id="laptop-container">
-        <Laptop3D
-          client:load
-          screenUrl={projects[0].url}
-          projectName={projects[0].name}
-          projectCategory={projects[0].category}
-          projectColor={projects[0].color}
-        />
-        
-        <div class="flex items-center justify-center gap-2 mt-4">
-          {projects.map((_, i) => (
-            <button
-              class={`hero-dot w-2 h-2 rounded-full transition-all duration-300 ${i === 0 ? 'bg-accent w-6' : 'bg-border hover:bg-text-muted'}`}
-              data-index={i}
-            ></button>
-          ))}
-        </div>
+      <div class="relative" data-animate>
+        <Laptop3D client:load />
       </div>
     </div>
   </div>
 </section>
-
-<script>
-  const projects = [
-    { name: 'PilotCompassTest.com', category: 'EdTech / SaaS', url: 'https://pilotcompasstest.com', color: '#0070F3' },
-    { name: 'Arthneeti', category: 'Fintech', url: 'https://arthneeti.com', color: '#7928CA' },
-    { name: 'Nepali Imposter Game', category: 'Gaming', url: '#', color: '#10B981' }
-  ];
-
-  let current = 0;
-  const dots = document.querySelectorAll('.hero-dot');
-
-  function goTo(index: number) {
-    if (index >= projects.length) index = 0;
-    current = index;
-
-    dots.forEach((dot, i) => {
-      if (i === current) {
-        dot.classList.add('bg-accent', 'w-6');
-        dot.classList.remove('bg-border');
-      } else {
-        dot.classList.remove('bg-accent', 'w-6');
-        dot.classList.add('bg-border');
-      }
-    });
-  }
-
-  dots.forEach((dot) => {
-    dot.addEventListener('click', () => {
-      goTo(parseInt(dot.getAttribute('data-index') || '0'));
-    });
-  });
-
-  setInterval(() => {
-    goTo(current + 1);
-  }, 5000);
-</script>
