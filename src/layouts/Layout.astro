@@ -51,6 +51,28 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Space+Grotesk:wght@300..700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
 
     <title>{title}</title>
+
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "ROOKIE STUDIO",
+      "url": "https://rookiestudio.com",
+      "logo": "https://rookiestudio.com/logo.png",
+      "description": "Premium web development, app creation, and custom software solutions.",
+      "sameAs": [
+        "https://github.com/BeAsTeR-19"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "hello@rookiestudio.com",
+        "contactType": "customer service"
+      },
+      "areaServed": "NP",
+      "serviceType": ["Web Development", "Mobile App Development", "Custom Software"]
+    }
+    </script>
   </head>
   <body class="min-h-screen">
     <ThreeBackground />

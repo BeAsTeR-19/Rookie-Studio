@@ -1,5 +1,6 @@
 ---
 import MagneticButton from './MagneticButton.astro';
+import Laptop3D from './Laptop3D.jsx';
 
 const projects = [
   { name: 'PilotCompassTest.com', category: 'EdTech / SaaS', url: 'https://pilotcompasstest.com', color: '#0070F3' },
@@ -7,8 +8,6 @@ const projects = [
   { name: 'Nepali Imposter Game', category: 'Gaming', url: '#', color: '#10B981' }
 ];
 ---
-
-<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
 
 <section class="relative min-h-screen flex items-center overflow-hidden">
   <div class="absolute inset-0">
@@ -46,66 +45,16 @@ const projects = [
         </div>
       </div>
 
-      <div class="relative flex justify-center items-center" data-animate>
-        <div class="relative w-full" style="max-width: 700px;">
-          <model-viewer
-            src="/macbook_ultra_concept.glb"
-            alt="MacBook showing project"
-            camera-controls
-            auto-rotate
-            disable-zoom
-            camera-orbit="25deg 72deg 1.8m"
-            min-camera-orbit="auto auto auto"
-            max-camera-orbit="auto auto auto"
-            field-of-view="25deg"
-            style="width: 100%; height: 650px; background: transparent;"
-            class="macbook-viewer"
-            shadow-intensity="0"
-            shadow-softness="0"
-            exposure="1.2"
-            environment-image="neutral"
-          >
-            <!-- Hotspot anchored to the laptop screen surface -->
-            <div
-              slot="hotspot-screen"
-              data-position="0 0.012 0.112"
-              data-normal="0 0.3 0.95"
-              data-visibility-attribute="visible"
-              id="screen-content"
-              style="
-                width: 500px;
-                height: 310px;
-                transform: translateX(-50%) translateY(-50%) perspective(800px) rotateX(15deg);
-                border-radius: 6px;
-                overflow: hidden;
-                pointer-events: none;
-                background: #000;
-                box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-              "
-            >
-              {projects.map((project, i) => (
-                <iframe
-                  src={project.url}
-                  title={project.name}
-                  class={`hero-iframe absolute inset-0 w-full h-full border-0 transition-opacity duration-700 ${i === 0 ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
-                  data-index={i}
-                  loading={i === 0 ? 'eager' : 'lazy'}
-                  style="pointer-events: none;"
-                ></iframe>
-              ))}
-              <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-2">
-                <div class="flex items-center gap-2 mb-1">
-                  <span class="hero-project-badge px-2 py-0.5 text-xs font-medium rounded" style={`background: ${projects[0].color}30; color: ${projects[0].color}`}>
-                    {projects[0].category}
-                  </span>
-                </div>
-                <h3 class="text-xs font-bold font-display text-white hero-project-name">{projects[0].name}</h3>
-              </div>
-            </div>
-          </model-viewer>
-        </div>
-
-        <div class="flex items-center justify-center gap-2 mt-4 absolute -bottom-8 left-0 right-0">
+      <div class="relative" data-animate id="laptop-container">
+        <Laptop3D
+          client:load
+          screenUrl={projects[0].url}
+          projectName={projects[0].name}
+          projectCategory={projects[0].category}
+          projectColor={projects[0].color}
+        />
+        
+        <div class="flex items-center justify-center gap-2 mt-4">
           {projects.map((_, i) => (
             <button
               class={`hero-dot w-2 h-2 rounded-full transition-all duration-300 ${i === 0 ? 'bg-accent w-6' : 'bg-border hover:bg-text-muted'}`}
@@ -126,24 +75,11 @@ const projects = [
   ];
 
   let current = 0;
-  const iframes = document.querySelectorAll('.hero-iframe') as NodeListOf<HTMLElement>;
   const dots = document.querySelectorAll('.hero-dot');
-  const projectName = document.querySelector('.hero-project-name');
-  const projectBadge = document.querySelector('.hero-project-badge');
 
   function goTo(index: number) {
     if (index >= projects.length) index = 0;
     current = index;
-
-    iframes.forEach((iframe, i) => {
-      if (i === current) {
-        iframe.classList.remove('opacity-0', 'pointer-events-none');
-        iframe.classList.add('opacity-100');
-      } else {
-        iframe.classList.add('opacity-0', 'pointer-events-none');
-        iframe.classList.remove('opacity-100');
-      }
-    });
 
     dots.forEach((dot, i) => {
       if (i === current) {
@@ -154,14 +90,6 @@ const projects = [
         dot.classList.add('bg-border');
       }
     });
-
-    const p = projects[current];
-    if (projectName) projectName.textContent = p.name;
-    if (projectBadge) {
-      projectBadge.textContent = p.category;
-      projectBadge.style.background = `${p.color}30`;
-      projectBadge.style.color = p.color;
-    }
   }
 
   dots.forEach((dot) => {
