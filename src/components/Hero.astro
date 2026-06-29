@@ -1,6 +1,14 @@
 ---
 import MagneticButton from './MagneticButton.astro';
+
+const projects = [
+  { name: 'PilotCompassTest.com', category: 'EdTech / SaaS', url: 'https://pilotcompasstest.com', color: '#0070F3' },
+  { name: 'Arthneeti', category: 'Fintech', url: 'https://arthneeti.com', color: '#7928CA' },
+  { name: 'Nepali Imposter Game', category: 'Gaming', url: '#', color: '#10B981' }
+];
 ---
+
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
 
 <section class="relative min-h-screen flex items-center overflow-hidden">
   <div class="absolute inset-0">
@@ -38,25 +46,129 @@ import MagneticButton from './MagneticButton.astro';
         </div>
       </div>
 
-      <div class="relative" data-animate>
-        <div class="aspect-[4/5] bg-bg-surface border border-border rounded-2xl overflow-hidden relative group shadow-2xl shadow-black/10">
-          <iframe
-            src="https://pilotcompasstest.com"
-            title="PilotCompassTest.com"
-            class="w-full h-full border-0 pointer-events-none scale-[0.65] origin-top-left"
-            style="width: 154%; height: 154%;"
-            loading="lazy"
-          ></iframe>
-          <div class="absolute inset-0 bg-gradient-to-t from-bg via-transparent to-transparent pointer-events-none"></div>
-          <div class="absolute bottom-6 left-6 right-6 pointer-events-none">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="px-2 py-0.5 bg-accent/10 text-accent text-xs font-medium rounded">EdTech / SaaS</span>
+      <div class="relative flex justify-center items-center" data-animate>
+        <div class="relative w-full max-w-xl">
+          <model-viewer
+            src="/macbook_ultra_concept.glb"
+            alt="MacBook showing project"
+            camera-controls
+            auto-rotate
+            disable-zoom
+            camera-orbit="45deg 65deg 2.5m"
+            min-camera-orbit="auto auto auto"
+            max-camera-orbit="auto auto auto"
+            field-of-view="30deg"
+            style="width: 100%; height: 500px; background: transparent;"
+            class="macbook-viewer"
+            shadow-intensity="0"
+            shadow-softness="0"
+            exposure="1"
+            environment-image="neutral"
+          >
+            <div class="absolute inset-0 flex items-center justify-center pointer-events-none" slot="poster" style="display: none;"></div>
+            
+            <div 
+              id="screen-content" 
+              class="absolute screen-overlay" 
+              style="
+                width: 55%; 
+                height: 42%; 
+                left: 22.5%; 
+                top: 7%; 
+                border-radius: 4px;
+                overflow: hidden;
+                transform: perspective(1000px) rotateX(2deg) rotateY(-5deg);
+                pointer-events: none;
+              "
+            >
+              {projects.map((project, i) => (
+                <iframe
+                  src={project.url}
+                  title={project.name}
+                  class={`hero-iframe absolute inset-0 w-full h-full border-0 transition-opacity duration-700 ${i === 0 ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                  data-index={i}
+                  loading={i === 0 ? 'eager' : 'lazy'}
+                  style="pointer-events: none;"
+                ></iframe>
+              ))}
+              <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-3">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="hero-project-badge px-2 py-0.5 text-xs font-medium rounded" style={`background: ${projects[0].color}30; color: ${projects[0].color}`}>
+                    {projects[0].category}
+                  </span>
+                </div>
+                <h3 class="text-sm font-bold font-display text-white hero-project-name">{projects[0].name}</h3>
+              </div>
             </div>
-            <h3 class="text-xl font-bold font-display mb-1">PilotCompassTest.com</h3>
-            <p class="text-sm text-text-secondary">Pilot assessment preparation platform</p>
-          </div>
+          </model-viewer>
+        </div>
+
+        <div class="flex items-center justify-center gap-2 mt-4 absolute bottom-0 left-0 right-0">
+          {projects.map((_, i) => (
+            <button
+              class={`hero-dot w-2 h-2 rounded-full transition-all duration-300 ${i === 0 ? 'bg-accent w-6' : 'bg-border hover:bg-text-muted'}`}
+              data-index={i}
+            ></button>
+          ))}
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  const projects = [
+    { name: 'PilotCompassTest.com', category: 'EdTech / SaaS', url: 'https://pilotcompasstest.com', color: '#0070F3' },
+    { name: 'Arthneeti', category: 'Fintech', url: 'https://arthneeti.com', color: '#7928CA' },
+    { name: 'Nepali Imposter Game', category: 'Gaming', url: '#', color: '#10B981' }
+  ];
+
+  let current = 0;
+  const iframes = document.querySelectorAll('.hero-iframe') as NodeListOf<HTMLElement>;
+  const dots = document.querySelectorAll('.hero-dot');
+  const projectName = document.querySelector('.hero-project-name');
+  const projectBadge = document.querySelector('.hero-project-badge');
+
+  function goTo(index: number) {
+    if (index >= projects.length) index = 0;
+    current = index;
+
+    iframes.forEach((iframe, i) => {
+      if (i === current) {
+        iframe.classList.remove('opacity-0', 'pointer-events-none');
+        iframe.classList.add('opacity-100');
+      } else {
+        iframe.classList.add('opacity-0', 'pointer-events-none');
+        iframe.classList.remove('opacity-100');
+      }
+    });
+
+    dots.forEach((dot, i) => {
+      if (i === current) {
+        dot.classList.add('bg-accent', 'w-6');
+        dot.classList.remove('bg-border');
+      } else {
+        dot.classList.remove('bg-accent', 'w-6');
+        dot.classList.add('bg-border');
+      }
+    });
+
+    const p = projects[current];
+    if (projectName) projectName.textContent = p.name;
+    if (projectBadge) {
+      projectBadge.textContent = p.category;
+      projectBadge.style.background = `${p.color}30`;
+      projectBadge.style.color = p.color;
+    }
+  }
+
+  dots.forEach((dot) => {
+    dot.addEventListener('click', () => {
+      goTo(parseInt(dot.getAttribute('data-index') || '0'));
+    });
+  });
+
+  setInterval(() => {
+    goTo(current + 1);
+  }, 5000);
+</script>
