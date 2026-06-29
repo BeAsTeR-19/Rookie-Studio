@@ -14,7 +14,7 @@ function MacBook({ screenUrl, projectName, projectCategory, projectColor }) {
         transform
         occlude
         position={[-0.24, 0.75, 0.08]}
-        rotation={[-0.22, Math.PI, 0]}
+        rotation={[-0.22, 0, 0]}
         scale={0.27}
         style={{
           width: '300px',
