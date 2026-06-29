@@ -13,9 +13,9 @@ function MacBook({ screenUrl, projectName, projectCategory, projectColor }) {
       <Html
         transform
         occlude
-        position={[0, 0.52, -0.05]}
-        rotation={[-0.25, 0.05, 0]}
-        scale={0.15}
+        position={[-0.15, 0.48, 0.05]}
+        rotation={[-0.22, 0, 0]}
+        scale={0.18}
         style={{
           width: '300px',
           height: '190px',
