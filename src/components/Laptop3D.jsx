@@ -6,19 +6,19 @@ function MacBook({ screenUrl, projectName, projectCategory, projectColor }) {
   const { scene } = useGLTF('/macbook_ultra_concept.glb')
 
   return (
-    <group>
-      <primitive object={scene} scale={2.5} rotation={[0, -0.3, 0]} />
+    <group position={[0, -0.3, 0]}>
+      <primitive object={scene} scale={3.2} rotation={[0.05, -0.4, 0]} />
       
       {/* Screen content anchored to the laptop display */}
       <Html
         transform
         occlude
-        position={[0, 0.42, 0.08]}
-        rotation={[-0.15, 0, 0]}
-        scale={0.28}
+        position={[0, 0.52, -0.05]}
+        rotation={[-0.25, 0.05, 0]}
+        scale={0.15}
         style={{
-          width: '320px',
-          height: '200px',
+          width: '300px',
+          height: '190px',
           pointerEvents: 'none',
         }}
       >
@@ -47,12 +47,12 @@ function MacBook({ screenUrl, projectName, projectCategory, projectColor }) {
             left: 0,
             right: 0,
             background: 'linear-gradient(to top, rgba(0,0,0,0.8), transparent)',
-            padding: '8px 12px',
+            padding: '6px 10px',
           }}>
             <span style={{
-              fontSize: '10px',
-              padding: '2px 6px',
-              borderRadius: '4px',
+              fontSize: '9px',
+              padding: '2px 5px',
+              borderRadius: '3px',
               background: `${projectColor}30`,
               color: projectColor,
               fontWeight: 600,
@@ -60,7 +60,7 @@ function MacBook({ screenUrl, projectName, projectCategory, projectColor }) {
               {projectCategory}
             </span>
             <div style={{
-              fontSize: '11px',
+              fontSize: '10px',
               fontWeight: 'bold',
               color: '#fff',
               marginTop: '2px',
@@ -111,7 +111,7 @@ export default function Laptop3D({
       `}</style>
       <Suspense fallback={<Loader />}>
         <Canvas
-          camera={{ position: [2, 1.5, 3], fov: 35 }}
+          camera={{ position: [2.5, 2, 3.5], fov: 30 }}
           style={{ background: 'transparent' }}
           gl={{ alpha: true, antialias: true }}
         >
