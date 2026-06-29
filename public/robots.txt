@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rookiestudio.com/sitemap.xml

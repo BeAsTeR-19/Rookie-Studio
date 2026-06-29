@@ -1,0 +1,32 @@
+---
+interface Props {
+  class?: string;
+  size?: number;
+}
+
+const { class: className = '', size = 40 } = Astro.props;
+---
+
+<svg
+  class={className}
+  width={size}
+  height={size}
+  viewBox="0 0 100 100"
+  fill="currentColor"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <!-- Crenellations -->
+  <rect x="18" y="10" width="10" height="10" rx="1"/>
+  <rect x="32" y="10" width="10" height="10" rx="1"/>
+  <rect x="50" y="10" width="10" height="10" rx="1"/>
+  <rect x="64" y="10" width="10" height="10" rx="1"/>
+  
+  <!-- Top band -->
+  <rect x="14" y="18" width="64" height="5" rx="1"/>
+  
+  <!-- Body -->
+  <path d="M22 23 L28 78 L64 78 L70 23 Z"/>
+  
+  <!-- Base -->
+  <rect x="14" y="78" width="64" height="8" rx="2"/>
+</svg>

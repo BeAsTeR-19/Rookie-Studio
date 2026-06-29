@@ -1,0 +1,66 @@
+---
+const flows = [
+  {
+    title: 'Discovery & Strategy',
+    description: 'We audit your current presence, research your market, and define a clear path forward.',
+    steps: ['Market research', 'Competitor analysis', 'User interviews', 'Strategy deck'],
+    duration: '1-2 weeks'
+  },
+  {
+    title: 'Design & Prototype',
+    description: 'Wireframes, visual design, and interactive prototypes — all before writing a line of code.',
+    steps: ['Wireframes', 'Visual design', 'Prototype', 'User testing'],
+    duration: '2-3 weeks'
+  },
+  {
+    title: 'Development',
+    description: 'Clean, performant code built with modern tools. Regular demos throughout.',
+    steps: ['Frontend', 'Backend', 'Integrations', 'Testing'],
+    duration: '3-6 weeks'
+  },
+  {
+    title: 'Launch & Optimize',
+    description: 'Deployment, monitoring, and ongoing iteration based on real user data.',
+    steps: ['Deploy', 'Monitor', 'A/B test', 'Iterate'],
+    duration: 'Ongoing'
+  }
+];
+---
+
+<section id="process" class="py-32 border-t border-border">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="flex items-end justify-between mb-16" data-animate>
+      <div>
+        <p class="text-accent text-sm font-medium mb-3">How we work</p>
+        <h2 class="text-4xl md:text-5xl font-bold font-display">
+          Our process
+        </h2>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6" data-animate>
+      {flows.map((flow, i) => (
+        <div class="relative p-6 rounded-xl border border-border bg-bg-surface/50 hover:border-accent/20 transition-colors group">
+          <div class="text-6xl font-bold font-display text-border/50 absolute top-4 right-4">
+            {String(i + 1).padStart(2, '0')}
+          </div>
+          <div class="relative">
+            <h3 class="text-lg font-bold font-display mb-2">{flow.title}</h3>
+            <p class="text-sm text-text-secondary leading-relaxed mb-4">{flow.description}</p>
+            <div class="flex items-center gap-2 text-xs text-text-muted mb-4">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              {flow.duration}
+            </div>
+            <div class="flex flex-wrap gap-1.5">
+              {flow.steps.map((step) => (
+                <span class="text-xs px-2 py-0.5 bg-bg rounded text-text-muted">{step}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

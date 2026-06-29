@@ -1,0 +1,54 @@
+---
+const tools = [
+  {
+    title: 'ROI Calculator',
+    description: 'See how much revenue a new website could generate for your business.',
+    icon: 'M13 7h8m0 0v8m0-8l-8 8-4-4-6 6',
+    gradient: 'from-green-500 to-emerald-400'
+  },
+  {
+    title: 'App Cost Estimator',
+    description: 'Get a rough estimate for building your web or mobile app project.',
+    icon: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
+    gradient: 'from-purple-500 to-violet-400'
+  },
+  {
+    title: 'Speed Checker',
+    description: "Check your website's performance and get actionable improvement tips.",
+    icon: 'M13 10V3L4 14h7v7l9-11h-7z',
+    gradient: 'from-blue-500 to-indigo-400'
+  }
+];
+---
+
+<section class="py-32">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="flex items-end justify-between mb-16" data-animate>
+      <div>
+        <h2 class="text-4xl md:text-5xl font-bold font-display tracking-tight">
+          Try our free calculators
+        </h2>
+        <p class="text-text-secondary mt-4 max-w-xl">
+          Free tools to help you plan your next digital project. No sign-up required.
+        </p>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-4" data-animate>
+      {tools.map((tool) => (
+        <a href="#contact" class="group bg-bg-surface border border-border rounded-xl p-8 hover:border-accent/30 transition-all duration-300">
+          <div class={`w-14 h-14 rounded-xl bg-gradient-to-br ${tool.gradient} flex items-center justify-center mb-6`}>
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={tool.icon} />
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold font-display mb-2">{tool.title}</h3>
+          <p class="text-sm text-text-secondary leading-relaxed">{tool.description}</p>
+          <div class="mt-4 text-sm text-accent font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+            Try it now →
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,39 @@
+---
+interface Props {
+  href: string;
+  class?: string;
+  target?: string;
+  rel?: string;
+}
+
+const { href, class: className = '', target, rel } = Astro.props;
+---
+
+<a
+  href={href}
+  class:list={['magnetic-btn inline-flex items-center justify-center transition-transform duration-300', className]}
+  target={target}
+  rel={rel}
+>
+  <slot />
+</a>
+
+<script>
+  document.querySelectorAll('.magnetic-btn').forEach((btn) => {
+    btn.addEventListener('mousemove', (e: any) => {
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+    });
+
+    btn.addEventListener('mouseleave', () => {
+      btn.style.transform = 'translate(0, 0)';
+      btn.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+    });
+
+    btn.addEventListener('mouseenter', () => {
+      btn.style.transition = 'none';
+    });
+  });
+</script>

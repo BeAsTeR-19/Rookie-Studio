@@ -1,0 +1,396 @@
+---
+const demos = [
+  {
+    id: 'restaurant',
+    title: 'Restaurant & Hotel',
+    color: '#DC2626',
+    gradient: 'from-red-500 to-orange-400'
+  },
+  {
+    id: 'fitness',
+    title: 'Fitness & Gym',
+    color: '#F97316',
+    gradient: 'from-orange-500 to-amber-400'
+  },
+  {
+    id: 'beauty',
+    title: 'Beauty & Salon',
+    color: '#EC4899',
+    gradient: 'from-pink-500 to-rose-400'
+  },
+  {
+    id: 'hostel',
+    title: 'Hostel Management',
+    color: '#10B981',
+    gradient: 'from-emerald-500 to-teal-400'
+  },
+  {
+    id: 'aesthetic',
+    title: 'Aesthetic & Boutique',
+    color: '#8B5CF6',
+    gradient: 'from-violet-500 to-purple-400'
+  }
+];
+---
+
+<section id="demos" class="py-32 border-t border-border">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="flex items-end justify-between mb-12" data-animate>
+      <div>
+        <h2 class="text-4xl md:text-5xl font-bold font-display tracking-tight">
+          Demo Websites
+        </h2>
+        <p class="text-text-secondary mt-3 max-w-xl">
+          Interactive previews of what we can build for your industry.
+        </p>
+      </div>
+    </div>
+
+    <div class="flex gap-3 mb-10 overflow-x-auto pb-2" data-animate>
+      {demos.map((demo, i) => (
+        <button
+          class={`demo-tab px-4 py-2 text-sm font-medium whitespace-nowrap transition-all duration-200 ${i === 0 ? 'bg-accent text-white' : 'text-text-secondary hover:text-text border border-border'}`}
+          data-demo={demo.id}
+        >
+          {demo.title}
+        </button>
+      ))}
+    </div>
+
+    <div class="relative bg-bg-surface border border-border rounded-xl overflow-hidden" data-animate>
+      <div class="flex items-center gap-2 px-4 py-3 bg-bg-elevated border-b border-border">
+        <div class="flex gap-1.5">
+          <div class="w-3 h-3 rounded-full bg-[#FF5F57]"></div>
+          <div class="w-3 h-3 rounded-full bg-[#FEBC2E]"></div>
+          <div class="w-3 h-3 rounded-full bg-[#28C840]"></div>
+        </div>
+        <div class="flex-1 flex justify-center">
+          <div class="px-4 py-1 bg-bg rounded-md text-xs text-text-muted font-mono" id="demo-url">
+            restaurant-demo
+          </div>
+        </div>
+        <div class="w-16"></div>
+      </div>
+
+      <div id="demo-container" style="height: 650px;">
+        <!-- Restaurant Demo -->
+        <div id="demo-restaurant" class="demo-panel w-full h-full relative overflow-hidden">
+          <div class="absolute inset-0" id="restaurant-scene">
+            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1400&q=80" alt="Restaurant interior" class="w-full h-full object-cover transition-transform duration-500" id="restaurant-bg" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/20"></div>
+          </div>
+          <div class="absolute inset-0 flex items-end p-8 md:p-12">
+            <div class="w-full">
+              <div class="flex items-center gap-3 mb-4">
+                <span class="px-3 py-1 bg-white/10 backdrop-blur-sm text-white text-xs rounded-full">★★★★★</span>
+                <span class="text-white/60 text-xs">Fine Dining</span>
+              </div>
+              <h3 class="text-4xl md:text-5xl font-bold text-white font-display mb-3">La Maison</h3>
+              <p class="text-white/70 text-lg mb-6 max-w-md">A culinary journey through French cuisine. Every dish tells a story.</p>
+              <div class="flex flex-wrap gap-3">
+                <button class="px-6 py-3 bg-white text-black text-sm font-medium rounded-lg hover:bg-white/90 transition-colors">Reserve Table</button>
+                <button class="px-6 py-3 bg-white/10 backdrop-blur-sm text-white text-sm font-medium rounded-lg hover:bg-white/20 transition-colors border border-white/20">View Menu</button>
+                <button class="px-6 py-3 bg-white/10 backdrop-blur-sm text-white text-sm font-medium rounded-lg hover:bg-white/20 transition-colors border border-white/20">Gallery</button>
+              </div>
+              <div class="flex items-center gap-8 mt-8 text-white/60 text-sm">
+                <span>📍 123 Gourmet Street</span>
+                <span>📞 +1 (555) 123-4567</span>
+                <span>🕐 6PM - 11PM</span>
+              </div>
+            </div>
+          </div>
+          <div class="absolute top-6 right-6 flex gap-2">
+            <button class="w-10 h-10 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-colors border border-white/20">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+            </button>
+            <button class="w-10 h-10 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-colors border border-white/20">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.332m0 2.664a3 3 0 110-2.664m0 2.664l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.664 3 3 0 00-5.367 2.664zm0 2.664a3 3 0 105.368 2.664 3 3 0 00-5.368-2.664z" /></svg>
+            </button>
+          </div>
+          <div class="absolute bottom-6 left-6 text-white/40 text-xs">Move mouse to explore</div>
+        </div>
+
+        <!-- Fitness Demo -->
+        <div id="demo-fitness" class="demo-panel w-full h-full hidden relative overflow-hidden bg-zinc-950">
+          <div class="absolute inset-0 grid md:grid-cols-2">
+            <div class="relative overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80" alt="Gym" class="w-full h-full object-cover" />
+              <div class="absolute inset-0 bg-gradient-to-r from-zinc-950/80 to-transparent"></div>
+              <div class="absolute inset-0 flex items-center p-8">
+                <div>
+                  <p class="text-orange-500 text-xs font-bold uppercase tracking-[0.3em] mb-3">Transform Your Body</p>
+                  <h3 class="text-5xl md:text-6xl font-bold text-white font-display leading-[0.95]">PUSH<br/>YOUR<br/>LIMITS</h3>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-col justify-center p-8 md:p-12">
+              <div class="space-y-5">
+                <div class="flex items-center gap-4 p-4 bg-zinc-900/50 rounded-xl border border-zinc-800">
+                  <div class="w-12 h-12 bg-orange-500/10 rounded-xl flex items-center justify-center shrink-0">
+                    <span class="text-orange-500 font-bold text-lg">01</span>
+                  </div>
+                  <div>
+                    <div class="font-bold text-white text-sm">Personal Training</div>
+                    <div class="text-xs text-zinc-500">1-on-1 coaching with certified trainers</div>
+                  </div>
+                </div>
+                <div class="flex items-center gap-4 p-4 bg-zinc-900/50 rounded-xl border border-zinc-800">
+                  <div class="w-12 h-12 bg-orange-500/10 rounded-xl flex items-center justify-center shrink-0">
+                    <span class="text-orange-500 font-bold text-lg">02</span>
+                  </div>
+                  <div>
+                    <div class="font-bold text-white text-sm">Group Classes</div>
+                    <div class="text-xs text-zinc-500">HIIT, Yoga, CrossFit, Boxing</div>
+                  </div>
+                </div>
+                <div class="flex items-center gap-4 p-4 bg-zinc-900/50 rounded-xl border border-zinc-800">
+                  <div class="w-12 h-12 bg-orange-500/10 rounded-xl flex items-center justify-center shrink-0">
+                    <span class="text-orange-500 font-bold text-lg">03</span>
+                  </div>
+                  <div>
+                    <div class="font-bold text-white text-sm">Nutrition Plans</div>
+                    <div class="text-xs text-zinc-500">Custom diet & meal prep programs</div>
+                  </div>
+                </div>
+                <div class="flex items-center gap-4 p-4 bg-zinc-900/50 rounded-xl border border-zinc-800">
+                  <div class="w-12 h-12 bg-orange-500/10 rounded-xl flex items-center justify-center shrink-0">
+                    <span class="text-orange-500 font-bold text-lg">04</span>
+                  </div>
+                  <div>
+                    <div class="font-bold text-white text-sm">Recovery Zone</div>
+                    <div class="text-xs text-zinc-500">Sauna, cold plunge, massage</div>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-8 flex gap-3">
+                <button class="flex-1 py-3 bg-orange-500 text-white font-medium rounded-lg hover:bg-orange-600 transition-colors text-sm">Join Now — NPR 6,500/mo</button>
+                <button class="px-4 py-3 border border-zinc-700 text-zinc-300 font-medium rounded-lg hover:bg-zinc-800 transition-colors text-sm">Free Trial</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Beauty Demo -->
+        <div id="demo-beauty" class="demo-panel w-full h-full hidden relative overflow-hidden bg-[#FDF8F5]">
+          <div class="absolute inset-0 grid md:grid-cols-2">
+            <div class="flex flex-col justify-center p-8 md:p-12">
+              <p class="text-xs uppercase tracking-[0.3em] text-pink-400 mb-3 font-medium">Luxury Beauty Studio</p>
+              <h3 class="text-4xl md:text-5xl font-bold text-gray-900 font-display leading-tight mb-4">Glow<br/>Naturally</h3>
+              <p class="text-gray-500 mb-8 leading-relaxed text-sm">Premium beauty treatments crafted for the modern woman. Experience luxury that speaks for itself.</p>
+              <div class="flex gap-3 mb-8">
+                <button class="px-6 py-3 bg-gray-900 text-white text-sm font-medium rounded-full hover:bg-gray-800 transition-colors">Book Appointment</button>
+                <button class="px-6 py-3 border border-gray-300 text-gray-700 text-sm font-medium rounded-full hover:bg-gray-100 transition-colors">Our Services</button>
+              </div>
+              <div class="flex items-center gap-6 text-sm text-gray-500">
+                <span>✓ Certified Experts</span>
+                <span>✓ Premium Products</span>
+                <span>✓ Relaxing Space</span>
+              </div>
+            </div>
+            <div class="relative overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&q=80" alt="Beauty salon" class="w-full h-full object-cover" />
+              <div class="absolute inset-0 bg-gradient-to-l from-[#FDF8F5] via-transparent to-transparent"></div>
+              <div class="absolute bottom-8 left-8 right-8">
+                <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-4 shadow-lg">
+                  <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center">
+                      <svg class="w-6 h-6 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                    </div>
+                    <div>
+                      <div class="font-medium text-gray-900 text-sm">Next available: Today 3PM</div>
+                      <div class="text-xs text-gray-500">Hair Styling • 2 hours</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hostel Demo -->
+        <div id="demo-hostel" class="demo-panel w-full h-full hidden relative overflow-hidden bg-white">
+          <div class="absolute inset-0 p-8 md:p-12 overflow-y-auto">
+            <div class="max-w-5xl mx-auto">
+              <div class="flex items-center gap-3 mb-2">
+                <div class="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center">
+                  <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
+                </div>
+                <span class="font-bold text-gray-900 text-sm">NepalStay</span>
+              </div>
+              <h3 class="text-3xl font-bold text-gray-900 font-display mb-2">Find Your Stay in Kathmandu</h3>
+              <p class="text-gray-500 text-sm mb-6">Affordable hostels with instant booking confirmation</p>
+
+              <div class="bg-gray-50 rounded-xl p-4 mb-8 flex flex-col md:flex-row gap-3">
+                <input type="text" placeholder="Where to?" class="flex-1 px-4 py-3 bg-white border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-emerald-500" />
+                <input type="text" placeholder="Check-in" class="w-full md:w-36 px-4 py-3 bg-white border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-emerald-500" />
+                <input type="text" placeholder="Check-out" class="w-full md:w-36 px-4 py-3 bg-white border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-emerald-500" />
+                <button class="px-6 py-3 bg-emerald-500 text-white text-sm font-medium rounded-lg hover:bg-emerald-600 transition-colors">Search</button>
+              </div>
+
+              <div class="grid md:grid-cols-3 gap-4 mb-8">
+                <div class="bg-white border border-gray-100 rounded-xl overflow-hidden hover:shadow-lg transition-shadow">
+                  <img src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=400&q=80" alt="Hostel" class="w-full h-32 object-cover" />
+                  <div class="p-4">
+                    <div class="flex items-center justify-between mb-1">
+                      <span class="font-medium text-gray-900 text-sm">Backpacker's Den</span>
+                      <span class="text-emerald-600 font-bold text-sm">NPR 1,500</span>
+                    </div>
+                    <div class="text-xs text-gray-500 mb-2">Thamel, Kathmandu</div>
+                    <div class="flex items-center gap-2 text-xs text-gray-400">
+                      <span>★ 4.8</span>
+                      <span>•</span>
+                      <span>WiFi</span>
+                      <span>•</span>
+                      <span>Hot Water</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="bg-white border border-gray-100 rounded-xl overflow-hidden hover:shadow-lg transition-shadow">
+                  <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=400&q=80" alt="Hostel" class="w-full h-32 object-cover" />
+                  <div class="p-4">
+                    <div class="flex items-center justify-between mb-1">
+                      <span class="font-medium text-gray-900 text-sm">Mountain View</span>
+                      <span class="text-emerald-600 font-bold text-sm">NPR 2,500</span>
+                    </div>
+                    <div class="text-xs text-gray-500 mb-2">Boudha, Kathmandu</div>
+                    <div class="flex items-center gap-2 text-xs text-gray-400">
+                      <span>★ 4.9</span>
+                      <span>•</span>
+                      <span>Rooftop</span>
+                      <span>•</span>
+                      <span>Breakfast</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="bg-white border border-gray-100 rounded-xl overflow-hidden hover:shadow-lg transition-shadow">
+                  <img src="https://images.unsplash.com/photo-1590490360182-c33d955e5e8e?w=400&q=80" alt="Hostel" class="w-full h-32 object-cover" />
+                  <div class="p-4">
+                    <div class="flex items-center justify-between mb-1">
+                      <span class="font-medium text-gray-900 text-sm">Central Hub</span>
+                      <span class="text-emerald-600 font-bold text-sm">NPR 2,000</span>
+                    </div>
+                    <div class="text-xs text-gray-500 mb-2">New Baneshwor</div>
+                    <div class="flex items-center gap-2 text-xs text-gray-400">
+                      <span>★ 4.7</span>
+                      <span>•</span>
+                      <span>AC</span>
+                      <span>•</span>
+                      <span>Parking</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-4 text-sm text-gray-500">
+                <span class="flex items-center gap-1">✓ Free WiFi</span>
+                <span class="flex items-center gap-1">✓ 24/7 Check-in</span>
+                <span class="flex items-center gap-1">✓ Safe Storage</span>
+                <span class="flex items-center gap-1">✓ Laundry</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Aesthetic Demo -->
+        <div id="demo-aesthetic" class="demo-panel w-full h-full hidden relative overflow-hidden bg-[#FAFAF9]">
+          <div class="absolute inset-0 p-8 md:p-12 overflow-y-auto">
+            <div class="max-w-5xl mx-auto">
+              <div class="flex items-center justify-between mb-8">
+                <div>
+                  <h3 class="text-2xl font-bold font-display text-gray-900">Bloom & Petal</h3>
+                  <p class="text-sm text-gray-500">Artisan floristry in Kathmandu</p>
+                </div>
+                <div class="flex items-center gap-4">
+                  <button class="p-2 text-gray-400 hover:text-gray-600 transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                  </button>
+                  <button class="p-2 text-gray-400 hover:text-gray-600 transition-colors relative">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+                    <span class="absolute -top-1 -right-1 w-4 h-4 bg-violet-500 text-white text-[10px] rounded-full flex items-center justify-center">2</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="grid md:grid-cols-3 gap-6 mb-8">
+                <div class="md:col-span-2 md:row-span-2 relative rounded-2xl overflow-hidden group cursor-pointer">
+                  <img src="https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=800&q=80" alt="Flowers" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" style="min-height: 300px;" />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                  <div class="absolute bottom-6 left-6">
+                    <span class="px-3 py-1 bg-white/20 backdrop-blur-sm text-white text-xs rounded-full mb-2 inline-block">New Arrivals</span>
+                    <h4 class="text-2xl font-bold text-white font-display">Spring Collection</h4>
+                    <p class="text-white/70 text-sm">Handcrafted bouquets</p>
+                  </div>
+                </div>
+                <div class="bg-gradient-to-br from-pink-50 to-rose-50 rounded-2xl p-6 flex flex-col items-center justify-center">
+                  <div class="text-4xl font-bold font-display text-gray-900 mb-1">NPR 3,500</div>
+                  <div class="text-xs text-gray-500 mb-3">Starting from</div>
+                  <button class="px-4 py-2 bg-gray-900 text-white text-xs font-medium rounded-full hover:bg-gray-800 transition-colors">Shop Now</button>
+                </div>
+                <div class="bg-gradient-to-br from-violet-50 to-purple-50 rounded-2xl p-6 flex flex-col items-center justify-center">
+                  <div class="text-4xl font-bold font-display text-gray-900 mb-1">4.9</div>
+                  <div class="text-xs text-gray-500 mb-3">★ Customer Rating</div>
+                  <button class="px-4 py-2 bg-gray-900 text-white text-xs font-medium rounded-full hover:bg-gray-800 transition-colors">Reviews</button>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-4 gap-3">
+                <div class="aspect-square rounded-xl overflow-hidden bg-pink-100">
+                  <img src="https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=300&h=300&fit=crop" alt="Product" class="w-full h-full object-cover hover:scale-110 transition-transform duration-300" />
+                </div>
+                <div class="aspect-square rounded-xl overflow-hidden bg-amber-100">
+                  <img src="https://images.unsplash.com/photo-1455659817273-f96807779a8a?w=300&h=300&fit=crop" alt="Product" class="w-full h-full object-cover hover:scale-110 transition-transform duration-300" />
+                </div>
+                <div class="aspect-square rounded-xl overflow-hidden bg-rose-100">
+                  <img src="https://images.unsplash.com/photo-1468327768560-75b778cbb551?w=300&h=300&fit=crop" alt="Product" class="w-full h-full object-cover hover:scale-110 transition-transform duration-300" />
+                </div>
+                <div class="aspect-square rounded-xl overflow-hidden bg-gray-100 flex items-center justify-center">
+                  <span class="text-gray-400 text-sm font-medium">+24</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const tabs = document.querySelectorAll('.demo-tab');
+  const panels = document.querySelectorAll('.demo-panel');
+  const urlDisplay = document.getElementById('demo-url');
+  const restaurantBg = document.getElementById('restaurant-bg') as HTMLImageElement;
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const demoId = tab.getAttribute('data-demo');
+
+      tabs.forEach((t) => {
+        t.classList.remove('bg-accent', 'text-white');
+        t.classList.add('text-text-secondary', 'border', 'border-border');
+      });
+      tab.classList.add('bg-accent', 'text-white');
+      tab.classList.remove('text-text-secondary', 'border', 'border-border');
+
+      panels.forEach((p) => p.classList.add('hidden'));
+      const target = document.getElementById(`demo-${demoId}`);
+      if (target) target.classList.remove('hidden');
+
+      if (urlDisplay) urlDisplay.textContent = demoId + '-demo';
+    });
+  });
+
+  const restaurantScene = document.getElementById('restaurant-scene');
+  if (restaurantScene && restaurantBg) {
+    restaurantScene.addEventListener('mousemove', (e: any) => {
+      const rect = restaurantScene.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      restaurantBg.style.transform = `scale(1.15) translate(${x * -25}px, ${y * -25}px)`;
+    });
+
+    restaurantScene.addEventListener('mouseleave', () => {
+      restaurantBg.style.transform = 'scale(1.15) translate(0, 0)';
+    });
+  }
+</script>

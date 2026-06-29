@@ -1,0 +1,51 @@
+---
+const faqs = [
+  {
+    q: 'How long does a typical project take?',
+    a: 'Landing pages: 1-2 weeks. Business websites: 3-4 weeks. Web apps: 6-12 weeks depending on complexity. We give you a timeline before we start.'
+  },
+  {
+    q: 'Do I need to know what I want?',
+    a: "Not at all. We'll help you figure out what makes sense for your business. That's what the discovery phase is for."
+  },
+  {
+    q: 'What if I need changes after launch?',
+    a: 'Every project includes a support period (7-90 days depending on the plan). After that, we offer monthly maintenance plans.'
+  },
+  {
+    q: 'Do you work with businesses outside the US?',
+    a: 'Yes. We work with clients worldwide. PilotCompassTest.com, one of our projects, is based in Nepal.'
+  },
+  {
+    q: 'What tech stack do you use?',
+    a: "It depends on the project. We use Astro, Next.js, React, and other modern tools. We pick what's right for your specific needs, not what's trendy."
+  }
+];
+---
+
+<section id="faq" class="py-32 border-t border-border">
+  <div class="max-w-3xl mx-auto px-6 lg:px-8">
+    <div class="text-center mb-16" data-animate>
+      <p class="text-accent text-sm font-medium mb-3">FAQ</p>
+      <h2 class="text-4xl md:text-5xl font-bold font-display">
+        Questions & answers
+      </h2>
+    </div>
+
+    <div class="space-y-0" data-animate>
+      {faqs.map((faq) => (
+        <details class="group border-b border-border">
+          <summary class="flex items-center justify-between py-5 cursor-pointer list-none">
+            <span class="font-medium pr-4">{faq.q}</span>
+            <svg class="w-4 h-4 text-text-muted shrink-0 transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <div class="pb-5 text-text-secondary leading-relaxed">
+            {faq.a}
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

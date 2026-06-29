@@ -1,0 +1,42 @@
+---
+
+---
+
+<div id="cursor-follower" class="pointer-events-none fixed z-[9999] mix-blend-difference hidden md:block">
+  <div class="w-4 h-4 bg-white rounded-full -translate-x-1/2 -translate-y-1/2 transition-transform duration-100"></div>
+</div>
+
+<script>
+  const cursor = document.getElementById('cursor-follower');
+  let cursorX = 0;
+  let cursorY = 0;
+  let targetX = 0;
+  let targetY = 0;
+
+  if (cursor) {
+    document.addEventListener('mousemove', (e) => {
+      targetX = e.clientX;
+      targetY = e.clientY;
+    });
+
+    function animate() {
+      cursorX += (targetX - cursorX) * 0.15;
+      cursorY += (targetY - cursorY) * 0.15;
+      cursor.style.left = cursorX + 'px';
+      cursor.style.top = cursorY + 'px';
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    document.querySelectorAll('a, button').forEach((el) => {
+      el.addEventListener('mouseenter', () => {
+        cursor.style.transform = 'scale(4)';
+        cursor.style.opacity = '0.5';
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.style.transform = 'scale(1)';
+        cursor.style.opacity = '1';
+      });
+    });
+  }
+</script>

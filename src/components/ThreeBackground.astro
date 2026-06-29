@@ -1,0 +1,167 @@
+---
+
+---
+
+<div id="particle-canvas" class="fixed inset-0 z-0"></div>
+
+<script>
+  const container = document.getElementById('particle-canvas');
+  if (container) {
+
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d')!;
+  container.appendChild(canvas);
+
+  let width = window.innerWidth;
+  let height = window.innerHeight;
+  canvas.width = width;
+  canvas.height = height;
+
+  interface Particle {
+    x: number;
+    y: number;
+    z: number;
+    vx: number;
+    vy: number;
+    vz: number;
+    size: number;
+    opacity: number;
+  }
+
+  const particleCount = 300;
+  const connectionDistance = 150;
+  const particles: Particle[] = [];
+
+  for (let i = 0; i < particleCount; i++) {
+    particles.push({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      z: Math.random() * 500,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
+      vz: (Math.random() - 0.5) * 0.5,
+      size: Math.random() * 2 + 0.5,
+      opacity: Math.random() * 0.5 + 0.1
+    });
+  }
+
+  let mouseX = width / 2;
+  let mouseY = height / 2;
+  let mouseActive = false;
+
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    mouseActive = true;
+  });
+
+  document.addEventListener('mouseleave', () => {
+    mouseActive = false;
+  });
+
+  const time = { value: 0 };
+
+  function animate() {
+    requestAnimationFrame(animate);
+    time.value += 0.005;
+
+    ctx.clearRect(0, 0, width, height);
+
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+
+      p.x += p.vx;
+      p.y += p.vy;
+      p.z += p.vz;
+
+      if (mouseActive) {
+        const dx = mouseX - p.x;
+        const dy = mouseY - p.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 200) {
+          const force = (200 - dist) / 200;
+          p.vx += (dx / dist) * force * 0.02;
+          p.vy += (dy / dist) * force * 0.02;
+        }
+      }
+
+      p.vx += Math.sin(time.value + p.y * 0.01) * 0.005;
+      p.vy += Math.cos(time.value + p.x * 0.01) * 0.005;
+
+      p.vx *= 0.99;
+      p.vy *= 0.99;
+
+      if (p.x < 0) p.x = width;
+      if (p.x > width) p.x = 0;
+      if (p.y < 0) p.y = height;
+      if (p.y > height) p.y = 0;
+      if (p.z < 0) p.z = 500;
+      if (p.z > 500) p.z = 0;
+    }
+
+    for (let i = 0; i < particles.length; i++) {
+      const p1 = particles[i];
+      const zScale = (500 - p1.z) / 500;
+      const p1x = p1.x;
+      const p1y = p1.y;
+
+      for (let j = i + 1; j < particles.length; j++) {
+        const p2 = particles[j];
+        const dx = p1x - p2.x;
+        const dy = p1y - p2.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < connectionDistance) {
+          const opacity = (1 - dist / connectionDistance) * 0.15 * zScale;
+          const hue = 210 + Math.sin(time.value + i * 0.1) * 20;
+          ctx.beginPath();
+          ctx.moveTo(p1x, p1y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.strokeStyle = `hsla(${hue}, 100%, 50%, ${opacity})`;
+          ctx.lineWidth = 0.5 * zScale;
+          ctx.stroke();
+        }
+      }
+    }
+
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+      const zScale = (500 - p.z) / 500;
+      const size = p.size * zScale * 2;
+      const opacity = p.opacity * zScale;
+      const hue = 210 + Math.sin(time.value + i * 0.05) * 20;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, size, 0, Math.PI * 2);
+      ctx.fillStyle = `hsla(${hue}, 100%, 50%, ${opacity})`;
+      ctx.fill();
+    }
+  }
+
+  animate();
+
+  window.addEventListener('resize', () => {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+  });
+
+  }
+</script>
+
+<style>
+  #particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+
+  #particle-canvas canvas {
+    width: 100%;
+    height: 100%;
+  }
+</style>

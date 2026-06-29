@@ -1,0 +1,97 @@
+---
+const plans = [
+  {
+    name: 'Landing Page',
+    price: 'NPR 2,00,000',
+    description: 'Single-page site to capture leads and make a first impression.',
+    features: [
+      'Custom design',
+      'Mobile responsive',
+      'Contact form',
+      'SEO setup',
+      '7-day support'
+    ],
+    highlighted: false
+  },
+  {
+    name: 'Business Website',
+    price: 'NPR 6,50,000',
+    description: 'Multi-page site for established businesses that need more room.',
+    features: [
+      'Up to 10 pages',
+      'Custom design',
+      'CMS integration',
+      'Blog setup',
+      'Analytics',
+      '30-day support'
+    ],
+    highlighted: true
+  },
+  {
+    name: 'Web Application',
+    price: 'NPR 13,00,000+',
+    description: 'Custom software, dashboards, and complex platforms.',
+    features: [
+      'Unlimited pages',
+      'Custom functionality',
+      'User authentication',
+      'Database integration',
+      'API development',
+      '90-day support'
+    ],
+    highlighted: false
+  }
+];
+---
+
+<section id="pricing" class="py-32 border-t border-border">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="max-w-3xl mb-16" data-animate>
+      <p class="text-accent text-sm font-medium mb-3 uppercase tracking-wider">Pricing</p>
+      <h2 class="text-4xl md:text-5xl font-bold font-display mb-6 tracking-tight">
+        Simple, upfront pricing
+      </h2>
+      <p class="text-text-secondary text-lg">
+        No retainers. No hourly billing. You know exactly what you're paying before we start.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6" data-animate>
+      {plans.map((plan) => (
+        <div class={`relative p-8 rounded-xl border transition-all duration-200 ${
+          plan.highlighted 
+            ? 'border-accent bg-accent/5 shadow-lg shadow-accent/10' 
+            : 'border-border hover:border-text/20 hover:shadow-lg hover:shadow-black/5'
+        }`}>
+          {plan.highlighted && (
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-accent text-white text-xs font-medium rounded-full">
+              Most popular
+            </div>
+          )}
+          <h3 class="text-xl font-bold font-display mb-2">{plan.name}</h3>
+          <p class="text-sm text-text-secondary mb-6">{plan.description}</p>
+          <div class="mb-8">
+            <span class="text-4xl font-bold font-display tracking-tight">{plan.price}</span>
+          </div>
+          <ul class="space-y-3 mb-8">
+            {plan.features.map((feature) => (
+              <li class="flex items-center gap-3 text-sm text-text-secondary">
+                <svg class="w-4 h-4 text-accent shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                {feature}
+              </li>
+            ))}
+          </ul>
+          <a href="#contact" class={`block w-full py-3 text-center text-sm font-medium rounded-lg transition-all duration-200 ${
+            plan.highlighted 
+              ? 'bg-accent text-white hover:bg-accent-hover shadow-md shadow-accent/20' 
+              : 'border border-border text-text hover:border-text/30 hover:bg-bg-surface'
+          }`}>
+            Get started
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

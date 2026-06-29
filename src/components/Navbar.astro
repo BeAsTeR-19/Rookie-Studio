@@ -1,0 +1,68 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../../public/logo.png';
+import ThemeToggle from './ThemeToggle.astro';
+---
+
+<nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="/" class="flex items-center gap-2.5 group">
+        <Image src={logo} alt="Rookie Studio" class="h-7 w-auto" />
+        <span class="text-base font-bold font-display tracking-tight">
+          ROOKIE <span class="text-accent">STUDIO</span>
+        </span>
+      </a>
+
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#work" class="text-sm font-medium text-text-secondary hover:text-text transition-colors duration-150">Work</a>
+        <a href="#services" class="text-sm font-medium text-text-secondary hover:text-text transition-colors duration-150">Services</a>
+        <a href="#process" class="text-sm font-medium text-text-secondary hover:text-text transition-colors duration-150">Process</a>
+        <a href="#pricing" class="text-sm font-medium text-text-secondary hover:text-text transition-colors duration-150">Pricing</a>
+      </div>
+
+      <div class="hidden md:flex items-center gap-3">
+        <ThemeToggle />
+        <a href="mailto:hello@rookiestudio.com" class="group inline-flex items-center gap-2 px-5 py-2 text-sm font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-all duration-150 shadow-sm shadow-accent/20">
+          <span>Let's Talk</span>
+          <svg class="w-4 h-4 transform group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+      </div>
+
+      <button id="mobile-menu-btn" class="md:hidden p-2 text-text-secondary hover:text-text transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="hidden md:hidden bg-bg/95 backdrop-blur-xl border-t border-border">
+    <div class="px-6 py-4 space-y-3">
+      <a href="#work" class="block text-text-secondary hover:text-text py-2">Work</a>
+      <a href="#services" class="block text-text-secondary hover:text-text py-2">Services</a>
+      <a href="#process" class="block text-text-secondary hover:text-text py-2">Process</a>
+      <a href="#pricing" class="block text-text-secondary hover:text-text py-2">Pricing</a>
+      <a href="mailto:hello@rookiestudio.com" class="block w-full text-center px-6 py-3 text-sm font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-all duration-150 mt-4">
+        Let's Talk
+      </a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  
+  menuBtn?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+  });
+
+  mobileMenu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      mobileMenu?.classList.add('hidden');
+    });
+  });
+</script>

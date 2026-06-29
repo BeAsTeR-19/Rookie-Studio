@@ -1,0 +1,121 @@
+---
+const projects = [
+  {
+    title: 'PilotCompassTest.com',
+    category: 'EdTech',
+    description: 'Pilot assessment preparation platform for Nepali aviation candidates.',
+    url: 'https://pilotcompasstest.com',
+    color: '#0070F3',
+    tags: ['React', 'WebSocket', 'SaaS'],
+    year: '2024'
+  },
+  {
+    title: 'Nepali Imposter Game',
+    category: 'Gaming',
+    description: 'Multiplayer social deduction game with real-time gameplay.',
+    url: '#',
+    color: '#7928CA',
+    tags: ['Firebase', 'Real-time', 'Multiplayer'],
+    year: '2024'
+  },
+  {
+    title: 'Arthneeti',
+    category: 'Fintech',
+    description: 'Financial literacy platform for Nepali youth.',
+    url: '#',
+    color: '#0070F3',
+    tags: ['React', 'Dashboard', 'Analytics'],
+    year: '2025'
+  }
+];
+---
+
+<section id="work" class="py-32">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="flex items-end justify-between mb-12" data-animate>
+      <div>
+        <h2 class="text-4xl md:text-5xl font-bold font-display tracking-tight">
+          Selected Projects
+        </h2>
+      </div>
+      <a href="#contact" class="hidden md:inline-flex items-center gap-2 text-sm text-text-secondary hover:text-text transition-colors group">
+        View all
+        <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </div>
+
+    <div class="flex gap-3 mb-10" data-animate>
+      <button class="filter-btn active px-4 py-2 text-sm font-medium bg-accent text-white" data-filter="all">All</button>
+      <button class="filter-btn px-4 py-2 text-sm font-medium text-text-secondary hover:text-text border border-border" data-filter="EdTech">EdTech</button>
+      <button class="filter-btn px-4 py-2 text-sm font-medium text-text-secondary hover:text-text border border-border" data-filter="Gaming">Gaming</button>
+      <button class="filter-btn px-4 py-2 text-sm font-medium text-text-secondary hover:text-text border border-border" data-filter="Fintech">Fintech</button>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" data-animate>
+      {projects.map((project) => (
+        <div class="project-card group" data-category={project.category}>
+          <a href={project.url} target="_blank" rel="noopener" class="block">
+            <div class="aspect-[4/3] bg-bg-surface border border-border rounded-xl overflow-hidden relative mb-4">
+              <div class="absolute inset-0 bg-gradient-to-br opacity-20" style={`background: linear-gradient(135deg, ${project.color}20, ${project.color}05)`}></div>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="w-16 h-16 flex items-center justify-center" style={`background: ${project.color}15`}>
+                  <svg class="w-8 h-8" style={`color: ${project.color}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </div>
+              </div>
+              <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div class="w-8 h-8 bg-bg rounded-full flex items-center justify-center shadow-lg">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="flex items-start justify-between">
+              <div>
+                <h3 class="text-lg font-bold font-display mb-1">{project.title}</h3>
+                <p class="text-sm text-text-secondary">{project.description}</p>
+              </div>
+              <span class="text-xs text-text-muted">{project.year}</span>
+            </div>
+            <div class="flex flex-wrap gap-2 mt-3">
+              {project.tags.map((tag) => (
+                <span class="text-xs text-text-muted px-2 py-0.5 bg-bg-surface border border-border">{tag}</span>
+              ))}
+            </div>
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const projectCards = document.querySelectorAll('.project-card');
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const filter = btn.getAttribute('data-filter') || 'all';
+      
+      filterBtns.forEach((b) => {
+        b.classList.remove('active', 'bg-accent', 'text-white');
+        b.classList.add('text-text-secondary', 'border', 'border-border');
+      });
+      btn.classList.add('active', 'bg-accent', 'text-white');
+      btn.classList.remove('text-text-secondary', 'border', 'border-border');
+
+      projectCards.forEach((card) => {
+        const category = card.getAttribute('data-category');
+        if (filter === 'all' || category === filter) {
+          (card as HTMLElement).style.display = 'block';
+        } else {
+          (card as HTMLElement).style.display = 'none';
+        }
+      });
+    });
+  });
+</script>

@@ -1,0 +1,51 @@
+---
+const services = [
+  {
+    title: 'Web Development',
+    description: 'Custom websites and web apps built for performance and conversion. No templates, no shortcuts.',
+    icon: 'M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4'
+  },
+  {
+    title: 'Mobile Apps',
+    description: 'Native and cross-platform apps that users actually enjoy. iOS, Android, or both.',
+    icon: 'M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z'
+  },
+  {
+    title: 'Custom Software',
+    description: 'Bespoke tools, dashboards, and platforms built around your workflow. If you can dream it, we can build it.',
+    icon: 'M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'
+  },
+  {
+    title: 'UI/UX Design',
+    description: 'Interfaces that feel intuitive and look premium. We design for humans, not award shows.',
+    icon: 'M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01'
+  }
+];
+---
+
+<section class="py-32 border-t border-border">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="flex items-end justify-between mb-16" data-animate>
+      <div>
+        <p class="text-accent text-sm font-medium mb-3">What we do</p>
+        <h2 class="text-4xl md:text-5xl font-bold font-display">
+          Services
+        </h2>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-px bg-border rounded-xl overflow-hidden" data-animate>
+      {services.map((service) => (
+        <div class="bg-bg p-10 hover:bg-bg-surface transition-colors duration-500 group">
+          <div class="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-6 group-hover:bg-accent/20 transition-colors">
+            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d={service.icon} />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold font-display mb-3">{service.title}</h3>
+          <p class="text-text-secondary leading-relaxed">{service.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

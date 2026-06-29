@@ -1,0 +1,40 @@
+---
+const steps = [
+  {
+    num: '01',
+    title: 'Discovery',
+    description: 'We learn your business inside and out. Goals, audience, competition, and what success looks like for you.',
+  },
+  {
+    num: '02',
+    title: 'Design & Build',
+    description: 'We design, prototype, and develop your project with regular check-ins. No black boxes.',
+  },
+  {
+    num: '03',
+    title: 'Launch & Grow',
+    description: 'We deploy, monitor, and optimize. Your website should get better every month, not sit there.',
+  }
+];
+---
+
+<section id="process" class="py-32 border-t border-border">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="max-w-3xl mb-16" data-animate>
+      <p class="text-accent text-sm font-medium mb-3">How it works</p>
+      <h2 class="text-4xl md:text-5xl font-bold font-display">
+        Three steps to<br/>your new website
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-12" data-animate>
+      {steps.map((step) => (
+        <div>
+          <div class="text-5xl font-bold font-display text-border mb-4">{step.num}</div>
+          <h3 class="text-xl font-bold font-display mb-3">{step.title}</h3>
+          <p class="text-text-secondary leading-relaxed">{step.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

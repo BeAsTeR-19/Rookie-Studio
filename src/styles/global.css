@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #FFFFFF;
+  --color-bg-surface: #FAFAFA;
+  --color-bg-elevated: #F5F5F5;
+  --color-accent: #0070F3;
+  --color-accent-hover: #005FCC;
+  --color-secondary: #7928CA;
+  --color-text: #171717;
+  --color-text-secondary: #525252;
+  --color-text-muted: #A3A3A3;
+  --color-border: #E5E5E5;
+  --color-success: #0070F3;
+  --color-danger: #DC2626;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+}
+
+.dark {
+  --color-bg: #0A0A0A;
+  --color-bg-surface: #111111;
+  --color-bg-elevated: #1A1A1A;
+  --color-text: #EDEDED;
+  --color-text-secondary: #A3A3A3;
+  --color-text-muted: #525252;
+  --color-border: #262626;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: white;
+  }
+
+  * {
+    border-color: var(--color-border);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
