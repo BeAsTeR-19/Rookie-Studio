@@ -6,8 +6,8 @@ function MacBook({ screenUrl, projectName, projectCategory, projectColor }) {
   const { scene } = useGLTF('/macbook_ultra_concept.glb')
 
   return (
-    <group position={[0, -0.3, 0]}>
-      <primitive object={scene} scale={3.2} rotation={[0.05, -0.4, 0]} />
+    <group position={[0, -0.1, 0]}>
+      <primitive object={scene} scale={3.2} rotation={[0.05, -0.3, 0]} />
       
       {/* Screen content anchored to the laptop display */}
       <Html
@@ -131,9 +131,11 @@ export default function Laptop3D({
             enableZoom={false}
             enablePan={false}
             autoRotate
-            autoRotateSpeed={0.5}
-            minPolarAngle={Math.PI / 4}
-            maxPolarAngle={Math.PI / 2.2}
+            autoRotateSpeed={0.3}
+            minPolarAngle={Math.PI / 3.5}
+            maxPolarAngle={Math.PI / 2.5}
+            minAzimuthAngle={-Math.PI / 6}
+            maxAzimuthAngle={Math.PI / 6}
           />
         </Canvas>
       </Suspense>
