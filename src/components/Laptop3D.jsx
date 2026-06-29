@@ -6,16 +6,16 @@ function MacBook({ screenUrl, projectName, projectCategory, projectColor }) {
   const { scene } = useGLTF('/macbook_ultra_concept.glb')
 
   return (
-    <group position={[0, -0.2, 0]}>
-      <primitive object={scene} scale={4} rotation={[0.05, -0.3, 0]} />
+    <group position={[0, -0.3, 0]}>
+      <primitive object={scene} scale={5} rotation={[0.05, -0.3, 0]} />
       
       {/* Screen content anchored to the laptop display */}
       <Html
         transform
         occlude
-        position={[-0.19, 0.6, 0.06]}
+        position={[-0.24, 0.75, 0.08]}
         rotation={[-0.22, Math.PI, 0]}
-        scale={0.22}
+        scale={0.27}
         style={{
           width: '300px',
           height: '190px',
@@ -29,7 +29,6 @@ function MacBook({ screenUrl, projectName, projectCategory, projectColor }) {
           overflow: 'hidden',
           background: '#000',
           boxShadow: '0 4px 20px rgba(0,0,0,0.4)',
-          position: 'relative',
         }}>
           <iframe
             src={screenUrl}
@@ -41,34 +40,6 @@ function MacBook({ screenUrl, projectName, projectCategory, projectColor }) {
               pointerEvents: 'none',
             }}
           />
-          <div style={{
-            position: 'absolute',
-            bottom: 0,
-            left: 0,
-            right: 0,
-            background: 'linear-gradient(to top, rgba(0,0,0,0.8), transparent)',
-            padding: '6px 10px',
-          }}>
-            <span style={{
-              fontSize: '9px',
-              padding: '2px 5px',
-              borderRadius: '3px',
-              background: `${projectColor}30`,
-              color: projectColor,
-              fontWeight: 600,
-            }}>
-              {projectCategory}
-            </span>
-            <div style={{
-              fontSize: '10px',
-              fontWeight: 'bold',
-              color: '#fff',
-              marginTop: '2px',
-              fontFamily: 'system-ui',
-            }}>
-              {projectName}
-            </div>
-          </div>
         </div>
       </Html>
     </group>
